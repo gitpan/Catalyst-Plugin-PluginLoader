@@ -17,6 +17,7 @@ META.yml
 README
 t/01_basic.t
 t/02pod.t
+t/lib/Catalyst/Plugin/TestRole.pm
 t/lib/Catalyst/Plugin/Three.pm
 t/lib/Catalyst/Plugin/Two.pm
 t/lib/Catalyst/Plugin/Zero.pm

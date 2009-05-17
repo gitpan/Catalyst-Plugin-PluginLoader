@@ -12,4 +12,10 @@ sub root : Chained('/') PathPart('') {
   $c->res->body($c->plugin_one . " " . $c->plugin_two . " " . $c->plugin_three);
 }
 
+sub test_role : Local {
+  my ($self, $c) = @_;
+
+  $c->res->body($c->hello_from_role);
+}
+
 1;

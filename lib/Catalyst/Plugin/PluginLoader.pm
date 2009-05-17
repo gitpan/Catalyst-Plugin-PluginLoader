@@ -4,9 +4,12 @@ use strict;
 use warnings; 
 use MRO::Compat ();
 use Catalyst::Utils ();
-use Scalar::Util ();
+use Scalar::Util 'reftype';
+use Moose::Util qw/find_meta apply_all_roles/;
 
-our $VERSION = '0.01';
+use namespace::clean -except => 'meta';
+
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -29,7 +32,9 @@ Allows you to load L<Catalyst> plugins from your app config file.
 Plugin order is the same as if you put the plugins after PluginLoader in the
 C<use Catalyst> line.
 
-This is a B<COLOSSAL HACK> and is not guaranteed to work.
+Roles will be loaded as well, however C<around 'setup'> will not work yet.
+
+This is a B<COLOSSAL HACK>, use at your own risk.
 
 Please report bugs at L<http://rt.cpan.org/>.
 
@@ -45,7 +50,7 @@ sub setup {
 
     Catalyst::Exception->throw(
       'plugins must be an arrayref'
-    ) if Scalar::Util::reftype($plugins) ne 'ARRAY';
+    ) if reftype $plugins ne 'ARRAY';
 
     $plugins = [ map {
         s/\A\+// ? $_ : "Catalyst::Plugin::$_"
@@ -59,7 +64,14 @@ sub setup {
     for my $plugin (@$plugins) {
       Catalyst::Utils::ensure_class_loaded($plugin);
       $class->_plugins->{$plugin} = 1;
-      splice @$isa, ++$isa_idx, 0, $plugin;
+
+      my $meta = find_meta($plugin);
+
+      if ($meta && blessed $meta && $meta->isa('Moose::Meta::Role')) {
+        apply_all_roles($class => $plugin);
+      } else {
+        splice @$isa, ++$isa_idx, 0, $plugin;
+      }
     }
 
     unshift @$isa, shift @$isa; # necessary to tell perl that @ISA changed
@@ -131,4 +143,5 @@ under the same terms as Perl itself.
 
 =cut
 
-1
+1;
+# vim:sw=2 sts=2:

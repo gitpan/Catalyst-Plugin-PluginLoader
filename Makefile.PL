@@ -6,6 +6,7 @@ all_from 'lib/Catalyst/Plugin/PluginLoader.pm';
 requires 'Catalyst::Runtime' => '5.80002';
 requires 'MRO::Compat';
 requires 'Scalar::Util';
+requires 'namespace::clean';
 
 build_requires 'Test::More';
 

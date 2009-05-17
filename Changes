@@ -1,4 +1,7 @@
 Revision history for Perl extension Catalyst::Plugin::PluginLoader
 
+0.02  2009-05-17 21:44:05
+	- some initial role support
+
 0.01  2009-05-12 12:30:33
 	- first release

@@ -7,7 +7,7 @@ use Catalyst qw/Zero PluginLoader Three/;
 
 __PACKAGE__->config( 
   'Plugin::PluginLoader' => {
-    plugins => [qw/+MyApp::Plugin::One Two/]
+    plugins => [qw/+MyApp::Plugin::One Two TestRole/]
   }
 );
 

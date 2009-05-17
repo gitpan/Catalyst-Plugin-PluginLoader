@@ -16,7 +16,10 @@ DESCRIPTION
     Plugin order is the same as if you put the plugins after PluginLoader in
     the "use Catalyst" line.
 
-    This is a COLOSSAL HACK and is not guaranteed to work.
+    Roles will be loaded as well, however "around 'setup'" will not work
+    yet.
+
+    This is a COLOSSAL HACK, use at your own risk.
 
     Please report bugs at <http://rt.cpan.org/>.
 
