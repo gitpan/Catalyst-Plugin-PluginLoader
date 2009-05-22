@@ -9,7 +9,7 @@ use Moose::Util qw/find_meta apply_all_roles/;
 
 use namespace::clean -except => 'meta';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
@@ -89,7 +89,7 @@ sub setup {
 
     {
 # ->next::method won't work anymore, we have to do it ourselves
-      my @isa = @$isa;
+      my @isa = @{ mro::get_linear_isa($class) };
 
       1 while shift @isa ne __PACKAGE__;
 

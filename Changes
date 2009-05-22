@@ -1,5 +1,8 @@
 Revision history for Perl extension Catalyst::Plugin::PluginLoader
 
+0.03  2009-05-22 13:00:13
+	- change method dispatcher to mro::get_linear_isa which is more correct
+
 0.02  2009-05-17 21:44:05
 	- some initial role support
 

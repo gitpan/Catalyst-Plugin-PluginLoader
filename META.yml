@@ -21,7 +21,7 @@ no_index:
 provides:
   Catalyst::Plugin::PluginLoader:
     file: lib/Catalyst/Plugin/PluginLoader.pm
-    version: 0.02
+    version: 0.03
 requires:
   Catalyst::Runtime: 5.80002
   MRO::Compat: 0
@@ -29,4 +29,4 @@ requires:
   namespace::clean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03
