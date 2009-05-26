@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.87'
+generated_by: 'Module::Install version 0.90'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,7 +21,7 @@ no_index:
 provides:
   Catalyst::Plugin::PluginLoader:
     file: lib/Catalyst/Plugin/PluginLoader.pm
-    version: 0.03
+    version: 0.04
 requires:
   Catalyst::Runtime: 5.80002
   MRO::Compat: 0
@@ -29,4 +29,4 @@ requires:
   namespace::clean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.03
+version: 0.04

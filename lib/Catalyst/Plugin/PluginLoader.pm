@@ -9,7 +9,7 @@ use Moose::Util qw/find_meta apply_all_roles/;
 
 use namespace::clean -except => 'meta';
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 NAME
 
@@ -89,9 +89,9 @@ sub setup {
 
     {
 # ->next::method won't work anymore, we have to do it ourselves
-      my @isa = @{ mro::get_linear_isa($class) };
+      my @precedence_list = $class->meta->class_precedence_list;
 
-      1 while shift @isa ne __PACKAGE__;
+      1 while shift @precedence_list ne __PACKAGE__;
 
       my $old_next_method = \&maybe::next::method;
 
@@ -101,7 +101,7 @@ sub setup {
         }
 
         my $code;
-        while (my $next_class = shift @isa) {
+        while (my $next_class = shift @precedence_list) {
           $code = $next_class->can('setup');
           last if $code;
         }
